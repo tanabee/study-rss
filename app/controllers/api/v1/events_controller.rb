@@ -4,13 +4,15 @@ class Api::V1::EventsController < ApplicationController
     page = agent.get("https://techplay.jp/event/search?keyword=&pref=13&from=")
     event_list = page.search('.eventlist .title h3 a')
 
-    events = event_list.map do |event|
+    @events = event_list.map do |event|
       {
         title: event.inner_text,
         link: event['href']
       }
     end
 
-    render xml: events
+    respond_to do |format|
+      format.rss { render layout: false }
+    end
   end
 end

@@ -4,12 +4,13 @@ class Api::V1::EventsController < ApplicationController
     page = agent.get("https://techplay.jp/event/search?keyword=&pref=13&from=")
     event_list = page.search('.eventlist .title h3 a')
 
-    event_list.each do |event|
-      puts event.inner_text
-      puts event['href']
+    events = event_list.map do |event|
+      {
+        title: event.inner_text,
+        link: event['href']
+      }
     end
 
-    @events = Event.all
-    render json: @events
+    render xml: events
   end
 end

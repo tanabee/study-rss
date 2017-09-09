@@ -22,5 +22,5 @@
 
 .byebug_history
 
-.swp
+*.swp
 .DS_Store

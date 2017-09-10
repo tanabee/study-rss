@@ -5,7 +5,8 @@ xml.rss("version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/") do
   xml.channel do
     xml.title "techplay"
     xml.description "techplay events"
-    xml.link "https://techplay.jp/event/search?keyword=&pref=13&from="
+    xml.link "https://techplay.jp/event/search?keyword=&pref=13&from=&sort=created_desc"
+    xml.lastBuildDate Time.zone.now.to_s(:rfc822)
     @events.each do |event|
       xml.item do
         xml.title event[:title]

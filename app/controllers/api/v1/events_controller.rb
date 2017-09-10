@@ -1,7 +1,7 @@
 class Api::V1::EventsController < ApplicationController
   def index
     agent = Mechanize.new
-    page = agent.get("https://techplay.jp/event/search?keyword=&pref=13&from=")
+    page = agent.get("https://techplay.jp/event/search?keyword=&pref=13&from=&sort=created_desc")
     event_list = page.search('.eventlist .title h3 a')
 
     @events = event_list.map do |event|
